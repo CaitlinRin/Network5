@@ -3,6 +3,8 @@
 #include <vector>
 #include "tank_message.h"
 
+#include "connection.h"
+
 class Tank
 {
 public:
@@ -15,6 +17,8 @@ public:
 	sf::Vector2f position = {0.f, 0.f};
 	sf::Angle barrelRotation = sf::degrees(0);
 	sf::Angle bodyRotation = sf::degrees(0);;
+
+	ConnState state = NotReady; 
 
 	struct {
 		bool forward = false;

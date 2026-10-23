@@ -5,5 +5,5 @@
 struct TankMessage {
 	// The coordinates of the tank within the game world.
 	int id = 0;
-	float x, y;
+	float x, y; 
 };

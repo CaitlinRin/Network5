@@ -164,6 +164,8 @@ int main() {
 						packet >> message.x >> message.y;
 						// Use the message data to update the game.
 						game.NetworkUpdate(dt, message);
+
+						player_connections.at(i).state = NotReady;
 					}
 					else if (status == sf::Socket::Status::Disconnected) {
 						Utils::printMsg("Player disconnected: "
@@ -174,6 +176,10 @@ int main() {
 						// For now just set the connection state to Disconnected. 
 						// FIXME: But we should also remove the inactive connection from the vector and remove the tank from the game.
 						player_connections.at(i).state = Disconnected;
+						player_connections.at(i).socket->disconnect();
+						selector.remove(*player_connections.at(i).socket);						
+						player_connections.erase(player_connections.begin() + i);
+						
 					}
 				}
 			}
